@@ -1,0 +1,75 @@
+version: '3.8'
+services:
+
+    # automation_backend_prod:
+    #   container_name: automation_backend_prod
+    #   build:
+    #     context: .
+    #     dockerfile: ./Dockerfile
+    #     target: prod
+    #   image: automation-backend-automation_backend_prod:latest
+    #   restart: always
+    #   ports:
+    #     - "3000:3000"
+    #   environment:
+    #     NODE_ENV: production
+    #     POSTGRES_HOSTNAME: "postgres"
+    #     POSTGRES_PORT: 5432
+    #     POSTGRES_USERNAME: "postgres"
+    #     POSTGRES_PASSWORD: "postgres"
+    #     POSTGRES_DATABASE: "automation"
+    #     JWT_SECRET: "Mp8hMugrw7LGwXmyY1dR9n4sfo929c0V"
+    #     JWT_EXPIRED: "2h"
+    #     JWT_REFRESH_SECRET: "am5mnl9a94RdXPNaDSYqi7WY6CJ4QrUO"
+    #     JWT_REFRESH_EXPIRED: "7d"
+    #     BCRYPT_SALT: 10 
+
+    #   networks:
+    #     - pg-network
+
+    postgres:
+      image: postgres:13
+      container_name: postgresdb
+      restart: always
+      environment:
+        POSTGRES_DATABASE : postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD : postgres
+      volumes:
+        - postgres:/var/lib/postgres/data
+      ports:
+        - "5432:5432"
+      networks:
+        - pg-network
+      
+  
+    pgadmin:
+      image: dpage/pgadmin4
+      container_name: padmin_container
+      restart: always
+      environment:
+        PGADMIN_DEFAULT_EMAIL: hoangn@gmail.com
+        PGADMIN_DEFAULT_PASSWORD: admin
+        PGADMIN_CONFIG_WTF_CSRF_CHECK_DEFAULT: 'False'
+        PGADMIN_CONFIG_WTF_CSRF_ENABLED: 'False'
+      volumes:
+        - pgadmin:/var/lib/pgadmin/data
+
+      networks:
+        - pg-network
+      ports:
+        - "5000:80"
+      
+volumes:
+    postgres:
+      driver: local
+    pgadmin:
+      driver: local
+    cache:
+      drive: local
+      
+networks:
+    pg-network:
+      driver: bridge
+    
+      
