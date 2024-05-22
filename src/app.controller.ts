@@ -9,7 +9,7 @@ import { ApiBody, ApiConsumes } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FileUploadDto } from './app.dto';
 import createReport from 'docx-templates';
-const fs = require('fs');
+import fs from 'fs';
 
 @Controller()
 export class AppController {

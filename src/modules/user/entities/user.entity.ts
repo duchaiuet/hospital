@@ -19,17 +19,14 @@ export class User {
   @Column({ name: 'email', nullable: false })
   email: string;
 
-  // @Column({ name: 'password', nullable: false })
-  // password: string;
+  @Column({ name: 'password', nullable: true })
+  password: string;
 
-  // @Column({ name: 'refresh_token', nullable: true })
-  // refreshToken: string;
+  @Column({ name: 'sub', nullable: true })
+  sub: string;
 
   @Column({ name: 'is_admin', default: false })
   isAdmin: boolean;
-
-  // @Column({ name: 'jwt_key', nullable: true })
-  // jwtKey: string;
 
   @CreateDateColumn({
     name: 'created_at',
