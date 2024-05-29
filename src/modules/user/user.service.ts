@@ -49,7 +49,6 @@ export class UserService {
     if (!user) {
       throw new NotFoundException('Not found email.Please check your email');
     }
-
     if (sub) {
       user.sub = sub;
       await this.userRepository.save(user);

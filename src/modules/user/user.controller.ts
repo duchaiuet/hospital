@@ -27,11 +27,15 @@ export class UserController {
   @ApiQuery({
     name: 'email',
     type: 'string',
-
     required: false,
   })
-  findOneByEmail(@Query('email') email?: string) {
-    return this.userService.findOne(email);
+  @ApiQuery({
+    name: 'sub',
+    type: 'string',
+    required: false,
+  })
+  findOneByEmail(@Query('email') email?: string, @Query('sub') sub?: string) {
+    return this.userService.findOne(email, sub);
   }
 
   @Get(':id')
