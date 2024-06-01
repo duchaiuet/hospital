@@ -51,6 +51,7 @@ export class UserService {
     }
     if (sub) {
       user.sub = sub;
+      user.isActive = true;
       await this.userRepository.save(user);
     }
     return user;
